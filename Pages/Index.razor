@@ -1,0 +1,73 @@
+﻿@page "/"
+@using StudioMgn.Models
+@using System.Globalization;
+
+<PageTitle>Index</PageTitle>
+
+<RadzenScheduler 
+    @ref=@scheduler 
+    SlotRender=@OnSlotRender 
+    TItem="Appointment" 
+    Data=@appointments 
+    StartProperty="Start" 
+    EndProperty="End" 
+    TextProperty="Description"
+    SlotSelect="OnSlotSelect"
+    AppointmentSelect="OnAppointmentSelect"
+    AppointmentRender="OnAppointmentRender">
+    <RadzenDayView/>
+    <RadzenWeekView/>
+    <RadzenMonthView/>
+</RadzenScheduler>
+
+@inject ILogger<Index> console
+@inject DialogService dialogService
+@code{
+    
+    RadzenScheduler<Appointment> scheduler;
+    IList<Appointment> appointments=new List<Appointment>
+    {
+        new Appointment{Start=DateTime.Now,End=DateTime.Now.AddHours(2),Phone="+79043377705",Type=AppointmentType.ИНДИВИДУАЛЬНОЕ_ЗАНЯТИЕ, Comment="Индивидуальное занятие"}
+    };
+    protected override void OnInitialized()
+    {
+        CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("ru-RU");
+        CultureInfo.CurrentCulture = new CultureInfo("ru-RU");
+        CultureInfo.CurrentUICulture = new CultureInfo("ru-RU");
+    }
+    void OnSlotRender(SchedulerSlotRenderEventArgs args)
+    {
+        if (args.View.Text=="Month"&&args.Start.Date==DateTime.Today)
+        {
+            args.Attributes["style"] = "background:rgba(255, 220, 40, .2);";
+        }
+    }
+    async Task OnSlotSelect(SchedulerSlotSelectEventArgs args)
+    {
+        console.LogInformation($"=== SlotSelect: Start={args.Start} End={args.End}");
+        Appointment data = await dialogService.OpenAsync<AddAppointment>("Записаться в Студию",
+        new Dictionary<string, object> { { "Start", args.Start }, { "End", args.End } });
+        console.LogInformation($"=== {data}");
+        if (data!=null)
+        {
+            appointments.Add(data);
+            await scheduler.Reload();
+        }
+    }
+    async Task OnAppointmentSelect(SchedulerAppointmentSelectEventArgs<Appointment> args)
+    {
+        console.LogInformation($"AppointmentSelect: Appointment={args.Data.Type}");
+
+
+    }
+    void OnAppointmentRender(SchedulerAppointmentRenderEventArgs<Appointment> args)
+    {
+        // Never call StateHasChanged in AppointmentRender - would lead to infinite loop
+
+        //if (args.Data.Type == AppointmentType.ЗАПИСЬ)
+        //{
+        //    args.Attributes["style"] = "background: red";
+        //}
+    }
+
+}

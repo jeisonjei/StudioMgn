@@ -1,0 +1,99 @@
+﻿@inject DialogService DialogService
+@using StudioMgn.Models
+
+<RadzenTemplateForm
+    TItem="Appointment" Data="@model" Submit="OnSubmit">
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Кто придёт" />
+        </div>
+        <div class="col">
+            <RadzenTextBox Placeholder="Имя или название группы" class="w-75" @bind-Value="@model.Name" Name="Name" />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Телефон"/>
+        </div>
+        <div class="col">
+            <RadzenTextBox @bind-Value="@model.Phone" Name="Phone" Placeholder="(000) 000-00-00" class="w-75" /><i class="fa-solid fa-asterisk" style="color:crimson"></i>
+            <RadzenRequiredValidator Text="Укажите телефон" Component="Phone"/>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Пояснение" />
+        </div>
+        <div class="col">
+            <RadzenDropDown Placeholder="Запись, репетиция..." TValue="string" class="w-75"
+                            Data="@(Enum.GetValues(typeof(AppointmentType)))"
+            Change="@(args=>OnChange(args,"DropDown"))"></RadzenDropDown>
+            @*<RadzenRequiredValidator Text="Необходимо заполнить поле" Component="Type"/>*@
+        </div>
+    </div>
+
+    
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Начало" />
+        </div>
+        <div class="col">
+            <RadzenDatePicker @bind-Value="@model.Start" Name="Start" ShowTime="true" class="w-75" /><i class="fa-solid fa-asterisk" style="color:crimson"></i>
+            <RadzenRequiredValidator Text="Start is required" Component="Start" />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Окончание" />
+        </div>
+        <div class="col">
+            <RadzenDatePicker Name="End" @bind-Value="@model.End" ShowTime="true" class="w-75"/><i class="fa-solid fa-asterisk" style="color:crimson"></i>
+            <RadzenRequiredValidator Component="End" Text="End is required" />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Комментарий" />
+        </div>
+        <div class="col">
+            <RadzenTextArea @bind-Value="@model.Comment" Name="Comment" class="w-75" Placeholder="Комментарий..."/>
+            @*<RadzenRequiredValidator Text="Необходимо заполнить поле" Component="Comment"/>*@
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col">
+            <RadzenButton ButtonType="ButtonType.Submit" Text="Save" />
+        </div>
+    </div>
+</RadzenTemplateForm>
+
+@inject ILogger<AddAppointment> console
+@code{
+    [Parameter]
+    public DateTime Start { get; set; }
+    [Parameter]
+    public DateTime End{ get; set; }
+    Appointment model = new Appointment();
+    List<string> appointmentTypes = new List<string>();
+    protected override void OnInitialized()
+    {
+
+    }
+    protected override void OnParametersSet()
+    {
+        console.LogInformation($"=== get called!");
+        model.Start = Start;
+        model.End = End;
+    }
+    void OnSubmit(Appointment model)
+    {
+        DialogService.Close(model);
+    }
+    void OnChange(object value,string name)
+    {
+        var type = Enum.GetName(typeof(AppointmentType),value);
+        string description = $"{model.Name}{Environment.NewLine}{model.Phone}{Environment.NewLine}{type}";
+        model.Description = description;
+    }
+}

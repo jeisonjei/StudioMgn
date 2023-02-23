@@ -9,73 +9,77 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = StudioMgn
 build_property.RootNamespace = StudioMgn
-build_property.ProjectDir = D:\Code\StudioMgn\
+build_property.ProjectDir = D:\code\StudioMgn\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Code\StudioMgn
+build_property.MSBuildProjectDirectory = D:\code\StudioMgn
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Code/StudioMgn/App.razor]
+[D:/code/StudioMgn/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/StudioMgn/Pages/AddAppointment.razor]
+[D:/code/StudioMgn/Pages/AddAppointment.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkQXBwb2ludG1lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/StudioMgn/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Code/StudioMgn/Pages/EditAppointment.razor]
+[D:/code/StudioMgn/Pages/EditAppointment.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdEFwcG9pbnRtZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/StudioMgn/Pages/FetchData.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Code/StudioMgn/Pages/Index.razor]
+[D:/code/StudioMgn/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/StudioMgn/Shared/LoginDisplay.razor]
+[D:/code/StudioMgn/Pages/Location.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/code/StudioMgn/Pages/Schedule.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2NoZWR1bGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/code/StudioMgn/Pages/Services.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VydmljZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/code/StudioMgn/Shared/LoginDisplay.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/StudioMgn/Shared/SurveyPrompt.razor]
+[D:/code/StudioMgn/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/StudioMgn/_Imports.razor]
+[D:/code/StudioMgn/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/StudioMgn/Shared/MainLayout.razor]
+[D:/code/StudioMgn/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-zio7q7mdl6
 
-[D:/Code/StudioMgn/Shared/NavMenu.razor]
+[D:/code/StudioMgn/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-qnsbt0ewqi
 
-[D:/Code/StudioMgn/Areas/Identity/Pages/Account/LogOut.cshtml]
+[D:/code/StudioMgn/Areas/Identity/Pages/Account/LogOut.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dPdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/StudioMgn/Areas/Identity/Pages/Shared/_LoginPartial.cshtml]
+[D:/code/StudioMgn/Areas/Identity/Pages/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/StudioMgn/Pages/Error.cshtml]
+[D:/code/StudioMgn/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/StudioMgn/Pages/_Host.cshtml]
+[D:/code/StudioMgn/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code/StudioMgn/Pages/_Layout.cshtml]
+[D:/code/StudioMgn/Pages/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

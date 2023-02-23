@@ -1,20 +1,10 @@
 ﻿@inherits LayoutComponentBase
 
 <PageTitle>StudioMgn</PageTitle>
-<RadzenDialog/>
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
+<div>
+    <RadzenDialog />
+    <NavMenu></NavMenu>
+    <div style="margin-top:69.25px">
+        @Body
     </div>
-
-    <main>
-        <div class="top-row px-4 auth">
-            <LoginDisplay />
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
 </div>

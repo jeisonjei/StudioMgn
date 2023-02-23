@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Radzen;
 using StudioMgn.Areas.Identity;
 using StudioMgn.Data;
+using StudioMgn.Services;
 
 namespace StudioMgn
 {
@@ -18,9 +19,12 @@ namespace StudioMgn
 
             // Add services to the container.
             builder.Services.AddLocalization();
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var connectionString = "Data source=data\\studioMgn.db";
+            builder.Services.AddDbContextFactory<ApplicationDbContext>(options=>
+                options.UseSqlite(connectionString));
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlite(connectionString),ServiceLifetime.Transient);
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -29,6 +33,7 @@ namespace StudioMgn
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             builder.Services.AddSingleton<WeatherForecastService>();
             builder.Services.AddScoped<DialogService>();
+            builder.Services.AddScoped<AppointmentsService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

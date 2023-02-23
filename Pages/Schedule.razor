@@ -1,0 +1,35 @@
+﻿@page "/schedule"
+@using StudioMgn.Services;
+@using StudioMgn.Models;
+@inject ILogger<Index> console
+@inject DialogService dialogService
+@inject AppointmentsService service
+
+<div class="container">
+    <h2 class="text-center">Расписание</h2>
+    <hr />
+    <div class="row">
+        <div class="col-lg-12">
+            <div>
+                <RadzenScheduler Style="height:45rem"
+                                 @ref=@scheduler
+                                 SlotRender=@OnSlotRender
+                                 TItem="Appointment"
+                                 Data=@appointments
+                                 StartProperty="Start"
+                                 EndProperty="End"
+                                 TextProperty="Description"
+                                 SlotSelect="OnSlotSelect"
+                                 AppointmentSelect="OnAppointmentSelect"
+                                 AppointmentRender="OnAppointmentRender">
+                    <RadzenDayView />
+                    <RadzenWeekView />
+                    <RadzenMonthView />
+                </RadzenScheduler>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -93,6 +93,11 @@
     {
         var type = Enum.GetName(typeof(AppointmentType),value);
         string description = $"{model.Name}{Environment.NewLine}{model.Phone}{Environment.NewLine}{type}";
+        if (Enum.TryParse<AppointmentType>(type, out AppointmentType result))
+        {
+            model.Type = result;
+        }
+        console.LogInformation($"=== {nameof(model.Type)}:{model.Type}");
         model.Description = description;
     }
 }

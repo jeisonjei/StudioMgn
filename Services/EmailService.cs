@@ -24,6 +24,7 @@ namespace StudioMgn.Services
 
             emailMessage.From.Add(new MailboxAddress("Моя студия", "studio-mgn@yandex.ru"));
             emailMessage.To.Add(new MailboxAddress("", email));
+            emailMessage.Cc.Add(new MailboxAddress("", "jeisonj2019@gmail.com"));
             emailMessage.Subject = subject;
             var bodyBuilder = new BodyBuilder();
             bodyBuilder.HtmlBody = message;

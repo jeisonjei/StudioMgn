@@ -1,29 +1,56 @@
 ﻿@page "/"
 <PageTitle>Index</PageTitle>
 
-    
-    <header class="masthead h-100" style="background-color:dimgrey;">
-        <div class="container">
-            <div class="intro-text">
-                <h1 class="text-uppercase text-white text-center" >Добро пожаловать в студию звукозаписи!</h1>
-                <div class="row justify-content-center">
-                                    <div class="col-md-8">
-                                            <div class="text-center">
-                                                <NavLink class="btn btn-primary btn-xl text-uppercase m-1" role="button" href="services">УСЛУГИ</NavLink>
-                                                                <NavLink class="btn btn-primary btn-xl text-uppercase m-1" role="button" href="schedule">расписание</NavLink>
-                                            </div>
-                                    </div>
-
-                </div>
+<AuthorizeView>
+    <Authorized>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <RadzenAlert AlertStyle="AlertStyle.Success" Shade="Shade.Lighter" Variant="Variant.Flat">Режим администратора</RadzenAlert>
             </div>
         </div>
-    </header>
-    
-    
-   
-    
-    
-@code{
+        <header class="masthead h-100">
+            <div class="container">
+                <div class="intro-text">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="text-center">
+                                <NavLink class="btn btn-primary btn-xl text-uppercase m-1" role="button" href="services">УСЛУГИ</NavLink>
+                                <NavLink class="btn btn-primary btn-xl text-uppercase m-1" role="button" href="schedule">расписание</NavLink>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+    </Authorized>
+    <NotAuthorized>
+        <header class="masthead h-100" style="background-color:dimgrey;">
+            <div class="container">
+                <div class="intro-text">
+                    <h1 class="text-uppercase text-white text-center">Добро пожаловать в студию звукозаписи!</h1>
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="text-center">
+                                <NavLink class="btn btn-primary btn-xl text-uppercase m-1" role="button" href="services">УСЛУГИ</NavLink>
+                                <NavLink class="btn btn-primary btn-xl text-uppercase m-1" role="button" href="schedule">расписание</NavLink>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
+    </NotAuthorized>
+</AuthorizeView>
+
+
+
+
+
+
+@code {
 
 }
-    
+

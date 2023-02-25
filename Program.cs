@@ -8,6 +8,7 @@ using Radzen;
 using StudioMgn.Areas.Identity;
 using StudioMgn.Data;
 using StudioMgn.Services;
+using StudioMgn.Areas.Identity.Data;
 
 namespace StudioMgn
 {
@@ -27,15 +28,26 @@ namespace StudioMgn
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(connectionString),ServiceLifetime.Transient);
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password = new PasswordOptions
+                {
+                    RequireDigit = false,
+                    RequiredLength = 4,
+                    RequiredUniqueChars=0,
+                    RequireLowercase=false,
+                    RequireNonAlphanumeric=false,
+                    RequireUppercase=false
+                };
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-            builder.Services.AddSingleton<WeatherForecastService>();
             builder.Services.AddScoped<DialogService>();
             builder.Services.AddScoped<AppointmentsService>();
             builder.Services.AddSingleton<EmailService>();
+            builder.Services.AddScoped<DbInitializer>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -66,6 +78,12 @@ namespace StudioMgn
             using (var db=app.Services.GetRequiredService<ApplicationDbContext>())
             {
                 db.Database.Migrate();
+            }
+            using (var scope=app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var dbInitializer = services.GetRequiredService<DbInitializer>();
+                dbInitializer.CreateAdminUserAsync().Wait();
             }
             app.Run();
         }

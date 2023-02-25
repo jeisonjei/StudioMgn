@@ -1,0 +1,14 @@
+﻿@namespace Ntd.Components
+@using Microsoft.Extensions.Logging
+@inject ILogger<ErrorHandler> logger
+<CascadingValue Value="@this">
+    @ChildContent
+</CascadingValue>
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+    public void ShowErrorMessage<T>(string publicMessage, T page, string? developerMessage = null)
+    {
+        logger.LogError($"=== На странице {page} возникла ошибка.{Environment.NewLine}------{Environment.NewLine}{developerMessage}{Environment.NewLine}------");
+    }
+}

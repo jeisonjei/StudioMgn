@@ -38,7 +38,7 @@
             <RadzenLabel Text="Начало" />
         </div>
         <div class="col">
-            <RadzenDatePicker @bind-Value="@model.Start" Name="Start" ShowTime="true" class="w-75" /><i class="fa-solid fa-asterisk" style="color:crimson"></i>
+            <RadzenDatePicker @bind-Value="@model.Start" Name="Start" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" class="w-75" /><i class="fa-solid fa-asterisk" style="color:crimson"></i>
             <RadzenRequiredValidator Text="Start is required" Component="Start" />
         </div>
     </div>
@@ -47,7 +47,7 @@
             <RadzenLabel Text="Окончание" />
         </div>
         <div class="col">
-            <RadzenDatePicker Name="End" @bind-Value="@model.End" ShowTime="true" class="w-75"/><i class="fa-solid fa-asterisk" style="color:crimson"></i>
+            <RadzenDatePicker Name="End" @bind-Value="@model.End" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" class="w-75"/><i class="fa-solid fa-asterisk" style="color:crimson"></i>
             <RadzenRequiredValidator Component="End" Text="End is required" />
         </div>
     </div>

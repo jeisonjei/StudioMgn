@@ -14,15 +14,16 @@ namespace StudioMgn.Models
         [Required]
         public string? Phone { get; set; }
         [Required]
-        public AppointmentType Type { get; set; } = AppointmentType.ИНДИВИДУАЛЬНОЕ_ЗАНЯТИЕ;
+        public AppointmentType Type { get; set; }
         public string? Comment { get; set; }
         public string Description { get; set; }
     }
    public enum AppointmentType
     {
-        ЗАПИСЬ,
-        ИНДИВИДУАЛЬНОЕ_ЗАНЯТИЕ,
-        УРОК,
-        РЕПЕТИЦИЯ_ГРУППЫ
+        Запись,
+        Занятие,
+        Урок,
+        Репетиция,
+        Другое
     }
 }

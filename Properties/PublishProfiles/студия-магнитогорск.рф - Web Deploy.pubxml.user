@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAG8vSIa5rYEezo6WndTHOVgAAAAACAAAAAAAQZgAAAAEAACAAAABS3zSJNZxgd+i+HxlMCOW7NcuC/L1KW9E6+onhxNqWngAAAAAOgAAAAAIAACAAAAAbdICneY8Ak+CLlZ/B6NngCp6vps13qfeuxB2DUOoKUTAAAABTLkgUhmVI5SCjd83Z5CZ1ycRsAgfv3JHCpo/LnA7z7mtRRazMv1O7e+7Vojv6PmVAAAAAV//EGIz873QUl3SKOlfycgjjFDvYdMFVFqnlzr/WKYTpmu4ttoOqhNHBaHYqOVw6Sm7eVB9nYMJ/Ji4QMozR0g==</EncryptedPassword>
+    <History>True|2023-02-25T06:46:27.8334078Z;True|2023-02-24T15:47:25.8724790+05:00;True|2023-02-24T10:32:38.7113575+05:00;True|2023-02-24T09:02:35.7805298+05:00;True|2023-02-24T08:51:25.3016187+05:00;True|2023-02-24T08:44:10.3734297+05:00;True|2023-02-24T08:38:49.8347055+05:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=app.db</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

@@ -19,8 +19,9 @@ namespace StudioMgn
 
             // Add services to the container.
             builder.Services.AddLocalization();
+            var connectionString = builder.Configuration.GetConnectionString("SqliteConnection") ?? throw new InvalidOperationException("Connection string 'SqliteConnection' not found.");
             //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            var connectionString = "Data source=data\\studioMgn.db";
+            //var connectionString = "Data source=data\\studioMgn.db";
             builder.Services.AddDbContextFactory<ApplicationDbContext>(options=>
                 options.UseSqlite(connectionString));
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -34,6 +35,7 @@ namespace StudioMgn
             builder.Services.AddSingleton<WeatherForecastService>();
             builder.Services.AddScoped<DialogService>();
             builder.Services.AddScoped<AppointmentsService>();
+            builder.Services.AddSingleton<EmailService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -61,6 +63,10 @@ namespace StudioMgn
             app.MapBlazorHub();
             app.MapFallbackToPage("/_Host");
 
+            using (var db=app.Services.GetRequiredService<ApplicationDbContext>())
+            {
+                db.Database.Migrate();
+            }
             app.Run();
         }
     }

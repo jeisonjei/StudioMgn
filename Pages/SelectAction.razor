@@ -1,0 +1,23 @@
+﻿<div class="d-flex flex-row justify-content-center">
+    <RadzenButton Click="Cancel" Style="margin:5px" ButtonStyle="ButtonStyle.Light">Отмена</RadzenButton>
+    <RadzenButton Click="Delete" Style="margin:5px" ButtonStyle="ButtonStyle.Danger">Удалить</RadzenButton>
+</div>
+
+@using StudioMgn.Services
+@using StudioMgn.Models
+@inject DialogService dialog
+@inject AppointmentsService service
+@inject ILogger<SelectAction> console
+@code {
+    [Parameter]
+    public Appointment appointment { get; set; }
+    void Cancel()
+    {
+        dialog.Close();
+    }
+    async Task Delete()
+    {
+        await service.RemoveAsync(appointment);
+        dialog.Close();
+    }
+}

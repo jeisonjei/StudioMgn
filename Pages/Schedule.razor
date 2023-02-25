@@ -3,15 +3,16 @@
 @using StudioMgn.Models;
 @inject ILogger<Index> console
 @inject DialogService dialogService
-@inject AppointmentsService service
+@inject AppointmentsService appointmentsService
+@inject EmailService emailService
 
 <div class="container">
-    <h2 class="text-center">Расписание</h2>
+    <h2 class="text-center mt-2">Расписание</h2>
     <hr />
     <div class="row">
         <div class="col-lg-12">
             <div>
-                <RadzenScheduler Style="height:45rem"
+                <RadzenScheduler  TodayText="Сегодня"  Style="height:600px"
                                  @ref=@scheduler
                                  SlotRender=@OnSlotRender
                                  TItem="Appointment"
@@ -22,9 +23,18 @@
                                  SlotSelect="OnSlotSelect"
                                  AppointmentSelect="OnAppointmentSelect"
                                  AppointmentRender="OnAppointmentRender">
-                    <RadzenDayView />
-                    <RadzenWeekView />
+                                 <Template Context="data">
+                        <div>@data.Name</div>
+                        <div><strong>@data.Phone</strong></div>
+                        <div>@data.Type</div>
+                        <div>@data.Comment</div>
+                                 </Template>
+                                 <ChildContent>
+
+                    <RadzenDayView  StartTime="@TimeSpan.FromHours(11)" EndTime="@TimeSpan.FromHours(22)" TimeFormat="HH:mm"/>
+                    <RadzenWeekView  StartTime="@TimeSpan.FromHours(11)" EndTime="@TimeSpan.FromHours(22)" TimeFormat="HH:mm"/>
                     <RadzenMonthView />
+                                 </ChildContent>
                 </RadzenScheduler>
 
             </div>

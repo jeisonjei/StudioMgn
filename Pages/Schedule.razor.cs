@@ -64,7 +64,7 @@ namespace StudioMgn.Pages
             console.LogInformation($"=== SlotSelect: Start={args.Start} End={args.End}");
             var currentDate=args.Start.ToLongDateString();
             var currentWeekDay = DateTimeFormatInfo.CurrentInfo.GetDayName(args.Start.DayOfWeek);
-            Appointment data = await dialogService.OpenAsync<AddAppointment>($"Записаться в студию на {currentWeekDay}, {currentDate}", new Dictionary<string, object> { { "Start", args.Start }, { "End", args.End } });
+            Appointment data = await dialogService.OpenAsync<AddAppointment>($"Записаться в студию на {currentDate}", new Dictionary<string, object> { { "Start", args.Start }, { "End", args.End } });
             console.LogInformation($"=== {data}");
             if (data != null)
             {

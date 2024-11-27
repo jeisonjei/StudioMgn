@@ -37,7 +37,8 @@ namespace StudioMgn.Services
                 try
                 {
                     await client.ConnectAsync("smtp.yandex.ru", 587, false);
-                    await client.AuthenticateAsync("studio-mgn@yandex.ru", "optical-bells");
+                    client.AuthenticationMechanisms.Remove("XOAUTH2");
+                    await client.AuthenticateAsync("studio-mgn@yandex.ru", "tpfadlluhgchbwlr");
                     await client.SendAsync(emailMessage);
                     await client.DisconnectAsync(true);
                     Logger.LogInformation($"=== электронное сообщение успешно отправлено на адрес {email}");

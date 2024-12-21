@@ -57,6 +57,7 @@ namespace StudioMgn.Pages
 
         async Task OnSlotSelect(SchedulerSlotSelectEventArgs args)
         {
+            
             if (args.Start > DateTime.Today.AddDays(14))
             {
                 return;
@@ -66,6 +67,9 @@ namespace StudioMgn.Pages
             var currentWeekDay = DateTimeFormatInfo.CurrentInfo.GetDayName(args.Start.DayOfWeek);
             Appointment data = await dialogService.OpenAsync<AddAppointment>($"Записаться в студию на {currentDate}", new Dictionary<string, object> { { "Start", args.Start }, { "End", args.End } });
             console.LogInformation($"=== {data}");
+
+            Console.WriteLine($"🔥 {nameof(data)}:{data}");
+            
             if (data != null)
             {
                 await appointmentsService.AddAsync(data);
@@ -85,7 +89,7 @@ namespace StudioMgn.Pages
                     name=data.Name;
                 }
                 message = $"<table style=\"border-collapse:collapse;border-spacing:0\" class=\"tg\"><tbody><tr><td style=\"background-color:#ebebeb;border-color:black;border-style:solid;border-width:1px;font-family:Arial,sans-serif;font-size:14px;overflow:hidden;padding:5px5px;text-align:left;vertical-align:top;word-break:normal\">Имя</td><td style=\"border-color:black;border-style:solid;border-width:1px;font-family:Arial,sans-serif;font-size:14px;overflow:hidden;padding:5px5px;text-align:left;vertical-align:top;word-break:normal\">{name}</td></tr><tr><td style=\"background-color:#ebebeb;border-color:black;border-style:solid;border-width:1px;font-family:Arial,sans-serif;font-size:14px;overflow:hidden;padding:5px5px;text-align:left;vertical-align:top;word-break:normal\">Телефон</td><td style=\"border-color:black;border-style:solid;border-width:1px;font-family:Arial,sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:5px5px;text-align:left;vertical-align:top;word-break:normal\">{phone}</td></tr><tr><td style=\"background-color:#ebebeb;border-color:black;border-style:solid;border-width:1px;font-family:Arial,sans-serif;font-size:14px;overflow:hidden;padding:5px5px;text-align:left;vertical-align:top;word-break:normal\">Событие</td><td style=\"border-color:black;border-style:solid;border-width:1px;font-family:Arial,sans-serif;font-size:14px;overflow:hidden;padding:5px5px;text-align:left;vertical-align:top;word-break:normal\">{type}</td></tr><tr><td style=\"background-color:#ebebeb;border-color:black;border-style:solid;border-width:1px;font-family:Arial,sans-serif;font-size:14px;overflow:hidden;padding:5px5px;text-align:left;vertical-align:top;word-break:normal\">Комментарий</td><td style=\"border-color:black;border-style:solid;border-width:1px;font-family:Arial,sans-serif;font-size:14px;overflow:hidden;padding:5px5px;text-align:left;vertical-align:top;word-break:normal\">{comment}</td></tr><tr><td style=\"background-color:#ebebeb;border-color:black;border-style:solid;border-width:1px;font-family:Arial,sans-serif;font-size:14px;overflow:hidden;padding:5px5px;text-align:left;vertical-align:top;word-break:normal\">Дата</td><td style=\"border-color:black;border-style:solid;border-width:1px;font-family:Arial,sans-serif;font-size:14px;overflow:hidden;padding:5px5px;text-align:left;vertical-align:top;word-break:normal\">{currentDate}</td></tr><tr><td style=\"background-color:#ebebeb;border-color:black;border-style:solid;border-width:1px;font-family:Arial,sans-serif;font-size:14px;overflow:hidden;padding:5px5px;text-align:left;vertical-align:top;word-break:normal\">Время</td><td style=\"border-color:black;border-style:solid;border-width:1px;font-family:Arial,sans-serif;font-size:14px;overflow:hidden;padding:5px5px;text-align:left;vertical-align:top;word-break:normal\">{data.Start.ToShortTimeString()}-{data.End.ToShortTimeString()}</td></tr></tbody></table><div><a href=\"http://studio-mgn.ru/schedule\">studio-mgn.ru</a></div>";
-                await emailService.SendEmailAsync("sky_jet@mail.ru","Новая запись в расписании",message);
+                // await emailService.SendEmailAsync("sky_jet@mail.ru","Новая запись в расписании",message);
             }
         }
 

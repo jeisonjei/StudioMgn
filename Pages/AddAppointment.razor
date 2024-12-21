@@ -1,8 +1,9 @@
 ﻿@inject Radzen.DialogService DialogService
+@using System.Reflection
 @using StudioMgn.Models
 
 <RadzenTemplateForm
-    TItem="Appointment" Data="@model" Submit="OnSubmit">
+TItem="Appointment" Data="@model" Submit="OnSubmit">
     <div class="row" style="margin-bottom: 16px">
         <div class="col-md-3">
             <RadzenLabel Text="Кто придёт" />
@@ -26,13 +27,13 @@
         </div>
         <div class="col">
             <RadzenDropDown Placeholder="Запись, репетиция..." TValue="string" class="w-75"
-                            Data="@(Enum.GetValues(typeof(AppointmentType)))"
+            Data="@(Enum.GetValues(typeof(AppointmentType)))"
             Change="@(args=>OnChange(args,"DropDown"))"></RadzenDropDown>
             @*<RadzenRequiredValidator Text="Необходимо заполнить поле" Component="Type"/>*@
         </div>
     </div>
 
-    
+
     <div class="row" style="margin-bottom: 16px">
         <div class="col-md-3">
             <RadzenLabel Text="Начало" />
@@ -87,6 +88,13 @@
     }
     void OnSubmit(Appointment model)
     {
+
+        var dateFromStart = model.Start.Date;
+        var timeFromEnd = model.End.TimeOfDay;
+        var newEnd = dateFromStart + timeFromEnd;
+
+        model.End = newEnd;
+
         DialogService.Close(model);
     }
     void OnChange(object value,string name)

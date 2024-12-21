@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  web:
+    build: .
+    ports: 
+      - 8000:80
+    volumes:
+      - dbData:/root/app/app.db:rw
+
+volumes:
+  dbData: {}

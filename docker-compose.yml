@@ -7,6 +7,7 @@ services:
       - 5000:80
     volumes:
       - dbData:/root/app/app.db:rw
+    restart: always
 
 volumes:
   dbData: {}

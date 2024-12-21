@@ -6,6 +6,6 @@ services:
     ports: 
       - 5000:80
     volumes:
-      - d:/app:/app/database:rw
+      - ./dbVolume:/app/database:rw
     restart: always
 

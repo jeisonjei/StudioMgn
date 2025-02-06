@@ -41,15 +41,15 @@ namespace StudioMgn.Pages
             {
                 args.Attributes["style"] = "background:rgba(255, 220, 40, .2);";
             }
-            if (args.View.Text=="Month" && args.Start>DateTime.Today.AddDays(14))
+            if (args.View.Text=="Month" && args.Start>DateTime.Today.AddDays(30))
             {
                 args.Attributes["style"] = "background:rgba(150,150,150,.5)";
             }
-            if (args.View.Text=="Week" &&args.Start>DateTime.Today.AddDays(14))
+            if (args.View.Text=="Week" &&args.Start>DateTime.Today.AddDays(30))
             {
                 args.Attributes["style"] = "background:rgba(150,150,150,.5)";
             }
-            if (args.View.Text == "Day" && args.Start > DateTime.Today.AddDays(14))
+            if (args.View.Text == "Day" && args.Start > DateTime.Today.AddDays(30))
             {
                 args.Attributes["style"] = "background:rgba(150,150,150)";
             }
@@ -58,7 +58,7 @@ namespace StudioMgn.Pages
         async Task OnSlotSelect(SchedulerSlotSelectEventArgs args)
         {
             
-            if (args.Start > DateTime.Today.AddDays(14))
+            if (args.Start > DateTime.Today.AddDays(30))
             {
                 return;
             }
